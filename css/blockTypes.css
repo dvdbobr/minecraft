@@ -1,0 +1,12 @@
+.dirt{
+    background: url('/images/blocks/dirt.jpg') center center no-repeat;
+    background-size: cover;
+}
+.wood{
+    background: url('/images/blocks/wood.jpg') center center no-repeat;
+    background-size: cover;
+}
+.stone{
+    background: url('/images/blocks/stone.jpg') center center no-repeat;
+    background-size: cover;
+}

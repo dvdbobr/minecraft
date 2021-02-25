@@ -1,0 +1,12 @@
+.axe{
+    background: url('/images/tools/axe.png') center center no-repeat;
+    background-size: cover;
+}
+.pickaxe{
+    background: url('/images/tools/pickaxe.png') center center no-repeat;
+    background-size: cover;
+}
+.shovel{
+    background: url('/images/tools/shovel.png') center center no-repeat;
+    background-size: cover;
+}
