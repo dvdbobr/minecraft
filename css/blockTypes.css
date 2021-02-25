@@ -1,12 +1,27 @@
-.dirt{
+.dirt {
     background: url('/images/blocks/dirt.jpg') center center no-repeat;
     background-size: cover;
 }
-.wood{
+
+.wood {
     background: url('/images/blocks/wood.jpg') center center no-repeat;
     background-size: cover;
 }
-.stone{
+
+.stone {
     background: url('/images/blocks/stone.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+.grass {
+    background: url('/images/blocks/grass.jpg') center center no-repeat;
+    background-size: cover;
+}
+.leaves{
+    background: url('/images/blocks/leaves.jpg') center center no-repeat;
+    background-size: cover;
+}
+.clouds{
+    background: url('/images/blocks/clouds.png') center center no-repeat;
     background-size: cover;
 }

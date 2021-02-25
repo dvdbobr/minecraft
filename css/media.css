@@ -2,16 +2,20 @@
     #landingPage>img {
         width: 300px;
     }
-
     .gameInfo {
         width: 100%;
     }
-
     .tools h1 {
         font-size: 2rem;
     }
-
-    .toolRow {
+    .gameLayout {
+        width: 100%;
+    }
+    .toolbarBox {
+        width: 40px;
+        height: 40px;
+    }
+    /* .toolRow {
         margin-top: 1rem;
     }
 
@@ -19,7 +23,7 @@
         align-self: center;
         font-size: 1rem;
 
-    }
+    } */
 }
 
 @media (min-width:801px) and (max-width: 1200px) {

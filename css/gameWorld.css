@@ -1,41 +1,90 @@
 /* game wrapper */
+
 #gameWorld {
     width: 100%;
     background: #f6f6f6;
     min-height: 100vh;
     display: flex;
 }
+
 /* game main content */
-.gameMainContent{
+
+.gameMainContent {
     height: 100vh;
     width: 80vw;
 }
-.gameLayout{
+
+.gameLayout {
     height: 100vh;
     width: 80%;
     margin: 0 auto;
     background-color: lightblue;
     display: grid;
     grid-template-columns: repeat(20, auto);
-    grid-template-rows: repeat(20,auto);
+    grid-template-rows: repeat(20, auto);
 }
-/* .mapRow{
-    display: flex;
 
-} */
-.block{
+.block {
     border: 1px solid;
     /* width: 3vw; */
     height: 5vh;
-
 }
-.block:hover{
+
+.block:hover {
     border: 1px solid #fff;
     transition: border 0.1s ease;
 }
+
 /* game right content */
-.gameRightContent{
+
+.gameRightContent {
     height: 100vh;
     width: 20vw;
-    background-color:#333;
+    background-color: #333;
+}
+
+.gameToolbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 45vh;
+}
+
+.toolbarBox {
+    border: 2px solid #fff;
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+}
+
+.toolbarBox:hover {
+    border: 1px solid #fff;
+    transition: border 2s ease-in-out;
+}
+
+.inventory {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
+    grid-gap: 5px;
+}
+
+.gameButtons {
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.gameButtons button {
+    background-color: aqua;
+    font-family: "mcFont";
+    font-size: 2rem;
+    opacity: 1;
+}
+
+.gameButtons button:hover {
+    opacity: 0.5;
+    transition: opacity 300ms ease-in-out;
 }

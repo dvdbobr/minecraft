@@ -22,7 +22,7 @@
             <h1>How To Play</h1>
             <div class="gameExplanation">
                 <div class="explanationCol">
-                    <span>choose tool</span>
+                    <span>choose a tool</span>
                     <span>and mine</span>
                 </div>
                 <div class="explanationCol">
@@ -65,41 +65,26 @@
             <div class="gameLayout"></div>
         </div>
         <div class="gameRightContent">
-            <div class="gameToolbar"></div>
-            <div class="inventory"></div>
+            <div class="gameToolbar">
+                <div class="toolbarBox shovel"></div>
+                <div class="toolbarBox pickaxe"></div>
+                <div class="toolbarBox axe"></div>
+            </div>
+            <div class="inventory">
+                <div class="toolbarBox dirt"><span class="dirtCount"></span></div>
+                <div class="toolbarBox grass"><span class="grassCount"></span></div>
+                <div class="toolbarBox wood"><span class="woodCount"></span></div>
+                <div class="toolbarBox leaves"><span class="leavesCount"></span></div>
+                <div class="toolbarBox stone"><span class="stoneCount"></span></div>
+                <div class="toolbarBox clouds"><span class="cloudsCount"></span></div>
+            </div>
+            <div class="gameButtons">
+                <button class="reset">reset</button>
+                <button class="menu">exit to menu</button>
+            </div>
         </div>
     </div>
     <script src="/js/landing-page.js"></script>
     <script src="/js/gameWorld.js"></script>
 </body>
-<!-- <div class="toolRow">
-                    <span>Choose Tool</span>
-                    <div class="boxAndText">
-                        <div class="box axe"></div>
-                        <span>axe</span>
-                    </div>
-                    <div class="boxAndText">
-                        <div class="box pickaxe"></div>
-                        <span>pickaxe</span>
-                    </div>
-                    <div class="boxAndText">
-                        <div class="box shovel"></div>
-                        <span>shovel</span>
-                    </div>
-                </div> -->
-                <!-- <div class="mineTypeRow">
-                    <span>And Mine</span>
-                    <div class="boxAndText">
-                        <div class="box wood"></div>
-                        <span>wood</span>
-                    </div>
-                    <div class="boxAndText">
-                        <div class="box stone"></div>
-                        <span>stone</span>
-                    </div>
-                    <div class="boxAndText">
-                        <div class="box dirt"></div>
-                        <span>dirt</span>
-                    </div>
-                </div> -->
 </html>
