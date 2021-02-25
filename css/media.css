@@ -1,0 +1,29 @@
+@media (max-width: 800px) {
+    #landingPage>img {
+        width: 300px;
+    }
+
+    .gameInfo {
+        width: 100%;
+    }
+
+    .tools h1 {
+        font-size: 2rem;
+    }
+
+    .toolRow {
+        margin-top: 1rem;
+    }
+
+    .toolRow span {
+        align-self: center;
+        font-size: 1rem;
+
+    }
+}
+
+@media (min-width:801px) and (max-width: 1200px) {
+    #landingPage>img {
+        width: 500px;
+    }
+}
