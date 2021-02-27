@@ -5,6 +5,7 @@
     background: #f6f6f6;
     min-height: 100vh;
     display: flex;
+    visibility: hidden;
 }
 
 /* game main content */
@@ -16,7 +17,7 @@
 
 .gameLayout {
     height: 100vh;
-    width: 80vh;
+    width: 100vh;
     margin: 0 auto;
     background-color: lightblue;
     display: grid;
@@ -25,13 +26,11 @@
 }
 
 .block {
-    
-    /* width: 3vw; */
     height: 5vh;
 }
 
 .block:hover {
-    border: 1px solid black;
+    border: 3px solid #9c27b0;
 }
 
 /* game right content */
@@ -43,10 +42,11 @@
 }
 
 .gameToolbar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 45vh;
+    display: grid;
+    margin-top: 3rem;
+    height: 25vh;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
 }
 
 .toolbarBox {
@@ -70,17 +70,21 @@
     font-size: 2rem;
     color: black;
 }
-.pickedTool{
+
+.pickedTool {
     background-color: rgb(55, 192, 55);
 }
-.pickedBlock{
+
+.pickedBlock {
     box-shadow: 10px 5px 5px rgb(55, 192, 55);
 }
-.wbw{
-    background-color: white;
-    border:1px solid blue;
+
+.wrongBlock {
+    background-color: rgb(206, 20, 20);
 }
+
 .gameButtons {
+    margin-top: 60px;
     height: 15vh;
     display: flex;
     flex-direction: column;
@@ -88,13 +92,18 @@
     align-items: center;
 }
 
-.gameButtons button {
+button {
+    margin-top: 20px;
     background-color: aqua;
     font-family: "mcFont";
     font-size: 2rem;
     opacity: 1;
 }
 
+.lightMode {
+    display: none;
+}
+
 .gameButtons button:hover {
-    opacity: 0.5;
+    background-color: #fff;
 }

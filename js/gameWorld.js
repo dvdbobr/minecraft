@@ -38,37 +38,27 @@ const blockInventory = {
     "stone": 0,
     "clouds": 0
 }
-// const chosenTool = {
-//     "shovel": 0,
-//     "pickaxe": 1,
-//     "axe": 2
-// }
-// const chosenBlock = {
-//     "sky": 0,
-//     "dirt": 1,
-//     "grass": 2,
-//     "wood": 3,
-//     "leaves": 4,
-//     "stone": 5,
-//     "clouds": 6
-// }
+
+//global variables
 let toolBeingUsed = -1;
 let blockBeingUsed = -1;
+let toolElement
+
 //game world
 const gameWorld = document.querySelector('#gameWorld');
 const gameLayout = document.querySelector('.gameLayout');
 const menuBtn = document.querySelector('.menu');
 const resetBtn = document.querySelector('.reset');
+const darkMode = document.querySelector('.darkMode');
+const lightMode = document.querySelector('.lightMode');
 const inventoryText = document.querySelectorAll('.inventory span');
-
+const gameMainContent = document.querySelector('.gameMainContent');
 //tools
-const shovel = document.querySelector('.gameToolbar>.shovel');
-const pickaxe = document.querySelector('.gameToolbar>.pickaxe');
-const axe = document.querySelector('.gameToolbar>.axe');
 const tools = document.querySelectorAll('.gameToolbar div');
 const blocksInInventory = document.querySelectorAll('.inventory div');
 
 tools.forEach(tool => {
+
     tool.addEventListener('click', (e) => {
         pickTool(e)
         toolBeingUsed = e.currentTarget.classList[1];
@@ -135,6 +125,12 @@ function createWorld() {
                     addBlocksToInventory(block, block.getAttribute('block-type'));
                 else if (toolBeingUsed == "axe" && (block.getAttribute('block-type') == 'wood' || block.getAttribute('block-type') == 'leaves'))//axe
                     addBlocksToInventory(block, block.getAttribute('block-type'));
+                else if (toolBeingUsed == "hand" && block.getAttribute('block-type') == "clouds")//hand
+                    addBlocksToInventory(block, block.getAttribute('block-type'));
+                else {
+                    if (toolBeingUsed != -1)
+                        blinkIfWrong(toolElement);
+                }
             });
         }
     }
@@ -150,6 +146,7 @@ function addBlocksToInventory(block, type) {
 //check which tool is picked
 function pickTool(event) {
     blockBeingUsed = -1;
+    toolElement = event.currentTarget;
     blocksInInventory.forEach(tool => {
         if (tool.classList.contains('pickedBlock'))
             tool.classList.remove('pickedBlock');
@@ -177,8 +174,11 @@ function pickBlock(event) {
         event.currentTarget.classList.add("pickedBlock");
     }
 }
-function placeBlockFromInventory() {
-
+function blinkIfWrong(tool) {
+    tool.classList.add('wrongBlock');
+    setTimeout(() => {
+        tool.classList.remove('wrongBlock')
+    }, 300);
 }
 
 //check mineable blocks/colors background of picked tool
@@ -195,17 +195,23 @@ function addListenersCheckMineable() {
                 // block.classList.remove('grass');
                 block.classList.add('sky');
             }
-            if (toolBeingUsed == "pickaxe" && block.getAttribute('block-type') == 'stone') {//pickaxe
+            else if (toolBeingUsed == "pickaxe" && block.getAttribute('block-type') == 'stone') {//pickaxe
                 block.classList.remove('stone');
                 block.setAttribute('placeable', 'yes');
                 block.setAttribute('block-type', 'sky');
                 block.classList.add('sky');
             }
-            if (toolBeingUsed == "axe" && (block.getAttribute('block-type') == 'wood' || block.getAttribute('block-type') == 'leaves')) {//axe
+            else if (toolBeingUsed == "axe" && (block.getAttribute('block-type') == 'wood' || block.getAttribute('block-type') == 'leaves')) {//axe
                 block.classList.remove('wood', 'leaves');
                 block.setAttribute('placeable', 'yes');
                 block.setAttribute('block-type', 'sky');
                 //block.classList.remove('leaves');
+                block.classList.add('sky');
+            }
+            else if (toolBeingUsed == "hand" && block.getAttribute('block-type') == 'clouds') {//pickaxe
+                block.classList.remove('clouds');
+                block.setAttribute('placeable', 'yes');
+                block.setAttribute('block-type', 'sky');
                 block.classList.add('sky');
             }
         })
@@ -218,21 +224,6 @@ function addListenerCheckPlaceable() {
         block.addEventListener('click', (e) => {
             console.log("this is the block", blockBeingUsed)
             checkAndUpdateBlockInventory(block)
-            // if (blockBeingUsed == "dirt" && block.getAttribute('block-type') == 'sky' && blockInventory[blockBeingUsed] > 0) {
-            //     // block.classList.remove('grass');
-            //     block.classList.remove('sky');
-            //     block.classList.add('dirt');
-            //     blockInventory[blockBeingUsed]--;
-            // }
-            // if (blockBeingUsed == "wood" && block.getAttribute('block-type') == 'sky' && blockInventory[blockBeingUsed] > 0) {
-            //     //block.classList.remove('leaves');
-            //     block.classList.remove('sky');
-            //     block.classList.add('wood');
-            // }
-            // if (blockBeingUsed == "stone" && block.getAttribute('block-type') == 'sky' && blockInventory[blockBeingUsed] > 0) {
-            //     block.classList.remove('sky');
-            //     block.classList.add('stone');
-            // }
         })
     })
 }
@@ -248,18 +239,11 @@ function checkAndUpdateBlockInventory(block) {
             block.classList.add(blockBeingUsed);
             blockInventory[blockBeingUsed]--;
             countSpan.textContent = blockInventory[blockBeingUsed];
-            //inventoryText.block.textContent = blockInventory[blockBeingUsed]
         }
     }
 }
-function removeStyleFromAllElements() {
-    document.querySelector('.dirt').remove(".dirt");
-    document.querySelector('.grass').remove(".grass");
-    document.querySelector('.wood').remove(".wood");
-    document.querySelector('.stone').remove(".stone");
-    document.querySelector('.clouds').remove(".clouds");
-};
-function resetWorld() {// should reset counter  too
+// resets the game
+function resetWorld() {
     for (block in blockInventory) {
         blockInventory[block] = 0;
     }
@@ -280,13 +264,28 @@ function resetWorld() {// should reset counter  too
     addListenersCheckMineable();
     addListenerCheckPlaceable();
 }
+
 //go back to menu
 menuBtn.addEventListener('click', () => {
     landingPage.style.display = "block";
     gameWorld.style.visibility = "hidden";
-    resetWorld(allBlocks)
+    resetWorld();
 });
+//dark mode
+darkMode.addEventListener('click', () => {
+    lightMode.style.display = "block";
+    gameMainContent.style.backgroundColor = "#2f2828";
+    gameLayout.style.backgroundColor = "#171212";
+    darkMode.style.display = "none";
+})
+lightMode.addEventListener('click', () => {
+    lightMode.style.display = "none";
+    gameMainContent.style.backgroundColor = "#f6f6f6";
+    gameLayout.style.backgroundColor = "lightblue";
+    darkMode.style.display = "block";
+    
+})
 //reset world
-resetBtn.addEventListener('click', resetWorld)
+resetBtn.addEventListener('click', resetWorld);
 
 

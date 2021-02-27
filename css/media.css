@@ -2,8 +2,14 @@
     #landingPage>img {
         width: 300px;
     }
+    #landingPage h1 {
+        font-size: 2rem;
+    }
     .gameInfo {
         width: 100%;
+    }
+    .explanationCol>span {
+        font-size: 1rem;
     }
     .tools h1 {
         font-size: 2rem;
@@ -14,6 +20,16 @@
     .toolbarBox {
         width: 40px;
         height: 40px;
+    }
+    .box {
+        width: 50px;
+        height: 50px;
+    }
+    .gameButtons .reset,.gameButtons .menu,.gameButtons .darkMode,.gameButtons .lightMode {
+        margin-top: 20px;
+        font-size: 20px;
+        width: 90%;
+        padding: 10px;
     }
 }
 
