@@ -10,3 +10,7 @@
     background: url('/images/tools/shovel.png') center center no-repeat;
     background-size: cover;
 }
+.hand{
+    background: url('/images/tools/hand.png') center center no-repeat;
+    background-size: cover;
+}

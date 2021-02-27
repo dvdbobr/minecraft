@@ -68,10 +68,13 @@
     grid-gap: 5px;
     text-align: center;
     font-size: 2rem;
-    color: red;
+    color: black;
 }
 .pickedTool{
-    background-color: blue;
+    background-color: rgb(55, 192, 55);
+}
+.pickedBlock{
+    box-shadow: 10px 5px 5px rgb(55, 192, 55);
 }
 .wbw{
     background-color: white;
