@@ -49,6 +49,7 @@ const gameWorld = document.querySelector('#gameWorld');
 const gameLayout = document.querySelector('.gameLayout');
 const menuBtn = document.querySelector('.menu');
 const resetBtn = document.querySelector('.reset');
+//light/dark mode
 const darkMode = document.querySelector('.darkMode');
 const lightMode = document.querySelector('.lightMode');
 const inventoryText = document.querySelectorAll('.inventory span');
@@ -57,23 +58,20 @@ const gameMainContent = document.querySelector('.gameMainContent');
 const tools = document.querySelectorAll('.gameToolbar div');
 const blocksInInventory = document.querySelectorAll('.inventory div');
 
-tools.forEach(tool => {
+tools.forEach(tool => {//which tool is being used
 
     tool.addEventListener('click', (e) => {
         pickTool(e)
         toolBeingUsed = e.currentTarget.classList[1];
-        console.log(e.currentTarget.classList[1], "is being used now id:", toolBeingUsed)
     })
 })
-blocksInInventory.forEach(block => {
+blocksInInventory.forEach(block => {//which block is being used
     block.addEventListener('click', (e) => {
         pickBlock(e)
         blockBeingUsed = e.currentTarget.classList[1];
-        console.log(e.currentTarget.classList[1], "is being used now id:", blockBeingUsed)
     })
 })
 inventoryText.forEach(block => block.textContent = 0)//initialize count text of each block in inventory
-
 
 function createWorld() {
     for (let row = 0; row < gameMatrix.length; row++) {//create the block in game layout
@@ -135,14 +133,12 @@ function createWorld() {
         }
     }
 }
+//update count in inventory
 function addBlocksToInventory(block, type) {
     let countType = "." + block.getAttribute('block-type') + "Count";
     let countSpan = document.querySelector(countType);
-    console.log(countSpan);
     countSpan.textContent = ++blockInventory[type];
-    console.log(block.getAttribute('block-type') + "Count", blockInventory[type]);
 }
-
 //check which tool is picked
 function pickTool(event) {
     blockBeingUsed = -1;
@@ -183,16 +179,13 @@ function blinkIfWrong(tool) {
 
 //check mineable blocks/colors background of picked tool
 function addListenersCheckMineable() {
-
     const allBlocks = document.querySelectorAll('.block');
-    //console.log(allBlocks.length);
     allBlocks.forEach(block => {
         block.addEventListener('click', (e) => {
             if (toolBeingUsed == "shovel" && (block.getAttribute('block-type') == 'dirt' || block.getAttribute('block-type') == 'grass')) {//shovel  
                 block.classList.remove('dirt', 'grass');
                 block.setAttribute('placeable', 'yes');
                 block.setAttribute('block-type', 'sky');
-                // block.classList.remove('grass');
                 block.classList.add('sky');
             }
             else if (toolBeingUsed == "pickaxe" && block.getAttribute('block-type') == 'stone') {//pickaxe
@@ -205,7 +198,6 @@ function addListenersCheckMineable() {
                 block.classList.remove('wood', 'leaves');
                 block.setAttribute('placeable', 'yes');
                 block.setAttribute('block-type', 'sky');
-                //block.classList.remove('leaves');
                 block.classList.add('sky');
             }
             else if (toolBeingUsed == "hand" && block.getAttribute('block-type') == 'clouds') {//pickaxe
@@ -221,17 +213,14 @@ function addListenersCheckMineable() {
 function addListenerCheckPlaceable() {
     const allBlocks = document.querySelectorAll('.block');
     allBlocks.forEach(block => {
-        block.addEventListener('click', (e) => {
-            console.log("this is the block", blockBeingUsed)
-            checkAndUpdateBlockInventory(block)
-        })
+        block.addEventListener('click', (e) => { checkAndUpdateBlockInventory(block) })
     })
 }
+//update inventory
 function checkAndUpdateBlockInventory(block) {
     if (blockBeingUsed != -1) {
         let countType = "." + blockBeingUsed + "Count";
         let countSpan = document.querySelector(countType);
-        console.log("block be used", blockInventory[blockBeingUsed])
         if (block.getAttribute('placeable') == 'yes' && blockInventory[blockBeingUsed] > 0) {
             block.classList.remove('sky');
             block.setAttribute('placeable', 'no')
@@ -278,12 +267,13 @@ darkMode.addEventListener('click', () => {
     gameLayout.style.backgroundColor = "#171212";
     darkMode.style.display = "none";
 })
+//light mode
 lightMode.addEventListener('click', () => {
     lightMode.style.display = "none";
     gameMainContent.style.backgroundColor = "#f6f6f6";
     gameLayout.style.backgroundColor = "lightblue";
     darkMode.style.display = "block";
-    
+
 })
 //reset world
 resetBtn.addEventListener('click', resetWorld);
